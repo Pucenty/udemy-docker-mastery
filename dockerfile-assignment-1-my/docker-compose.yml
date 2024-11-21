@@ -1,0 +1,31 @@
+# drupal:9
+# postgres:14
+
+version: '2'
+
+services:
+  drupal:
+    image: drupal:9
+    ports:
+    - 8080:80
+    volumes:
+    - drupal-modules:/var/www/html/modules
+    - drupal-profiles:/var/www/html/profiles
+    - drupal-sites:/var/www/html/sites
+    - drupal-themes:/var/www/html/themes
+  postgres:
+    image: postgres:14
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - 7bf6881c4c5ec463c2e11b3cb6154de7e803fcb096d192ec1e6cd4f94d44b86c:/var/lib/postgresql/data
+
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
+  7bf6881c4c5ec463c2e11b3cb6154de7e803fcb096d192ec1e6cd4f94d44b86c:
+    external: true
+
+
